@@ -14,6 +14,7 @@ import java.util.List;
 public class User {
     @Id
     private String userId;
+    @Column(name = "USER_NAME",unique = true,length = 20)
     private String username;
     private String password;
     //EAGER => à chaque fois que je vais lui demander de charger un user il va charger automatiquement les roles de cet user
