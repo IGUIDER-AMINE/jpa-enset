@@ -1,13 +1,11 @@
 package ma.enset.jpaenset.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,6 +16,7 @@ public class User {
     private String userId;
     private String username;
     private String password;
-    @ManyToMany(mappedBy = "users")
-    private List<Role> roles;
+    //EAGER => à chaque fois que je vais lui demander de charger un user il va charger automatiquement les roles de cet user
+    @ManyToMany(mappedBy = "users",fetch = FetchType.EAGER)
+    private List<Role> roles = new ArrayList<>();
 }
