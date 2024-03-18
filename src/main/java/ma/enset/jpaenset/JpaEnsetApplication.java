@@ -42,6 +42,17 @@ public class JpaEnsetApplication {
 			userService.addRoleToUser("admin","USER");
 			userService.addRoleToUser("admin","ADMIN");
 
+			try {
+				User user = userService.authenticate("user1","123456");
+				System.out.println(user.getUserId());
+				System.out.println(user.getUsername());
+				System.out.println("Roles=>");
+				user.getRoles().forEach(r->{
+					System.out.println("Roles=>"+r.toString());
+				});
+			}catch (Exception e){
+				e.printStackTrace();
+			}
 		};
 	}
 }
